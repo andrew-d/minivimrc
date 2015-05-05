@@ -52,7 +52,6 @@ endif
 " to work on iTerm2 on OS X - tweaks might be needed on other OSs.
 let g:solarized_termtrans=1
 let g:solarized_termcolors=256
-set background=dark
 function! s:TryScheme(scheme)
     if filereadable( expand("$HOME/.vim/colors/" . a:scheme . ".vim") )
         execute 'colorscheme ' . a:scheme
@@ -61,6 +60,7 @@ endfunction
 colorscheme desert
 silent! call s:TryScheme("wombat256mod")
 silent! call s:TryScheme("solarized")
+set background=dark
 
 " Space will unhighlight search and clear any diplayed message
 nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR><Space>
