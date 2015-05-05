@@ -90,7 +90,7 @@ set pastetoggle=<F2>
 " Indent settings
 set shiftwidth=4
 set softtabstop=4
-set expandtab autoindent
+set expandtab autoindent smartindent
 
 " If it exists, include user's local vim config
 if filereadable(expand("~/.vimrc.local"))
