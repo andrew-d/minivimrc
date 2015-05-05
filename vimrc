@@ -42,10 +42,8 @@ set hlsearch
 set cursorline
 
 " Set up our status line
-if has('statusline')
-    set laststatus=2
-    let &statusline='[%n] %<%f%{&mod?"[+]":""}%r%{&fenc !~ "^$\\|utf-8" || &bomb ? "[".&fenc.(&bomb?"-bom":"")."]" : ""}%=%15.(%l,%c%V   %P%)'
-endif
+set laststatus=2
+let &statusline='[%n] %<%f%{&mod?"[+]":""}%r%{&fenc !~ "^$\\|utf-8" || &bomb ? "[".&fenc.(&bomb?"-bom":"")."]" : ""}%=%15.(%l,%c%V   %P%)'
 
 " Use the "desert" colorscheme with a dark background by default, but use the
 " wombat or solarized schemes if we have them.  Note that solarized is set up
