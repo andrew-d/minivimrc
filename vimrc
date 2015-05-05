@@ -4,10 +4,8 @@ set nocompatible
 " Make backspace behave in a sane manner
 set backspace=indent,eol,start
 
-" Switch syntax highlighting on
+" Switch syntax highlighting and file type detection on
 syntax on
-
-" Enable file type detection and do language-dependent indenting
 filetype plugin indent on
 
 " Enable line numbers
@@ -50,11 +48,19 @@ if has('statusline')
 endif
 
 " Use the "desert" colorscheme with a dark background by default, but use the
-" wombat or solarized schemes if we have them.
-colorscheme desert
+" wombat or solarized schemes if we have them.  Note that solarized is set up
+" to work on iTerm2 on OS X - tweaks might be needed on other OSs.
+let g:solarized_termtrans=1
+let g:solarized_termcolors=256
 set background=dark
-silent! colorscheme wombat256mod
-silent! colorscheme solarized
+function! s:TryScheme(scheme)
+    if filereadable( expand("$HOME/.vim/colors/" . a:scheme . ".vim") )
+        execute 'colorscheme ' . a:scheme
+    endif
+endfunction
+colorscheme desert
+silent! call s:TryScheme("wombat256mod")
+silent! call s:TryScheme("solarized")
 
 " Space will unhighlight search and clear any diplayed message
 nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR><Space>
