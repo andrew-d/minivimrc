@@ -1,21 +1,17 @@
-" Use Vim settings, rather than Vi settings (much better!).
-" This must be first, because it changes other options as a side effect.
+" Use Vim settings, rather than Vi settings (must be first!)
 set nocompatible
 
-" Make backspace behave in a sane manner.
+" Make backspace behave in a sane manner
 set backspace=indent,eol,start
 
 " Switch syntax highlighting on
 syntax on
 
-" Enable file type detection and do language-dependent indenting.
+" Enable file type detection and do language-dependent indenting
 filetype plugin indent on
 
 " Enable line numbers
 set number
-
-" Always show current position
-set ruler
 
 " Keep the cursor this many lines from the top/bottom of the window
 set scrolloff=8
@@ -30,19 +26,16 @@ set visualbell t_vb=""
 set showmatch
 
 " Show incomplete command at bottom right
-set showcmd                             
+set showcmd
 
-" Suppress "Press ENTER..." prompt
+" Suppress various messages
 set shortmess=filrwxtI
 
 " Save 1000 lines of history
 set history=1000
 
-" By default, ignore case when searching
-set ignorecase
-
-" When the search pattern contains upper-case characters, be case-sensitive again
-set smartcase
+" Ignore case when the search string is lower-case, be case-sensitive otherwise
+set ignorecase smartcase
 
 " Highlight search results
 set hlsearch
@@ -50,29 +43,18 @@ set hlsearch
 " Slightly highlight the current line
 set cursorline
 
-" Set the ruler format.
-set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%)
-
-" Set up our status line.
+" Set up our status line
 if has('statusline')
     set laststatus=2
     let &statusline='[%n] %<%f%{&mod?"[+]":""}%r%{&fenc !~ "^$\\|utf-8" || &bomb ? "[".&fenc.(&bomb?"-bom":"")."]" : ""}%=%15.(%l,%c%V   %P%)'
 endif
 
-function! HasPaste()
-    if &paste
-        return '[PASTE]  '
-    else
-        return ''
-    endif
-endfunction
-
-" Use the "desert" colorscheme with a dark background
+" Use the "desert" colorscheme with a dark background by default, but use the
+" wombat or solarized schemes if we have them.
 colorscheme desert
 set background=dark
-
-" If we have it, enable the 'wombat' color scheme
 silent! colorscheme wombat256mod
+silent! colorscheme solarized
 
 " Space will unhighlight search and clear any diplayed message
 nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR><Space>
@@ -97,15 +79,14 @@ inoremap <C-k> <ESC><C-W>k
 inoremap <C-l> <ESC><C-W>l
 inoremap <C-h> <ESC><C-W>h
 
-" Pressing F2 will toggle and show the paste value
+" Pressing F2 will toggle and show the paste value (even in insert mode)
 nnoremap <F2> :set invpaste paste?<CR>
-set pastetoggle=<F2>                    " F2 should toggle in insert mode too
+set pastetoggle=<F2>
 
 " Indent settings
 set shiftwidth=4
 set softtabstop=4
-set expandtab
-set autoindent
+set expandtab autoindent
 
 " If it exists, include user's local vim config
 if filereadable(expand("~/.vimrc.local"))
