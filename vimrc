@@ -1,6 +1,9 @@
 " Use Vim settings, rather than Vi settings (must be first!)
 set nocompatible
 
+" Set the shell to bash
+set shell=/bin/bash
+
 " Make backspace behave in a sane manner
 set backspace=indent,eol,start
 
@@ -32,10 +35,9 @@ set shortmess=filrwxtI
 " Save 1000 lines of history
 set history=1000
 
-" Ignore case when the search string is lower-case, be case-sensitive otherwise
+" Ignore case when the search string is lower-case, be case-sensitive
+" otherwise, and highlight search results.
 set ignorecase smartcase
-
-" Highlight search results
 set hlsearch
 
 " Slightly highlight the current line
